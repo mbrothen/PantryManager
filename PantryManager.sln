@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PantryManager", "PantryManager\PantryManager.csproj", "{C5CB0738-73D7-4EAA-BA35-680120362BCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PantryManager.Tests", "PantryManager.Tests\PantryManager.Tests.csproj", "{0E5FB35A-F95B-4445-AD22-11AFAA4DA017}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5CB0738-73D7-4EAA-BA35-680120362BCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5CB0738-73D7-4EAA-BA35-680120362BCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5CB0738-73D7-4EAA-BA35-680120362BCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5CB0738-73D7-4EAA-BA35-680120362BCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E5FB35A-F95B-4445-AD22-11AFAA4DA017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E5FB35A-F95B-4445-AD22-11AFAA4DA017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E5FB35A-F95B-4445-AD22-11AFAA4DA017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E5FB35A-F95B-4445-AD22-11AFAA4DA017}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {936650CF-F707-4CC0-93E3-71BD1B4DCDAE}
+	EndGlobalSection
+EndGlobal
