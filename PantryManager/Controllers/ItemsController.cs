@@ -347,7 +347,7 @@ namespace PantryManager.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
             }
-            return PartialView("_ShoppingTable", GetUserItems());
+            return PartialView("_PantryTable", GetUserItems());
         }
         // GET: Items/Delete/5
         public ActionResult Delete(int? id)
