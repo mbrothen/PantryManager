@@ -1,0 +1,222 @@
+﻿
+@model IEnumerable<PantryManager.Models.Item>
+@using System.Linq;
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PantryQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ListQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InCart)
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+
+    @{
+        foreach (var group in Model.GroupBy(item => item.ItemCategory))
+        {
+            if (group.Any(item => item.InCart == false && item.ListQty > 0))
+            {
+                <tr><th>@group.Key</th></tr>
+            }
+            foreach (var item in group)
+
+            {
+                if (item.InCart == false && item.ListQty > 0)  //Only Draw Items In Pantry
+                {
+                    <tr id="@item.Id">
+                        <td class="itemName">
+                            @Html.DisplayFor(modelItem => item.ItemName, new { contenteditable = "true" })
+                        </td>
+                        <td class="itemDescription">
+                            @Html.DisplayFor(modelItem => item.ItemDescription)
+                        </td>
+
+                        <td class="unitQty">
+
+                            @Html.DisplayFor(modelItem => item.UnitQty)
+
+                        </td>
+                        <td class="unitType">
+                            @Html.DisplayFor(modelItem => item.UnitType)
+                        </td>
+                        <td class="pantryQty">
+                            <button type="button" class="btn btn-default btn-number minusPantry" data-type="minus" data-field="@item.Id">
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </button>
+                            @Html.DisplayFor(modelItem => item.PantryQty)
+                            <button type="button" class="btn btn-default btn-number plusPantry" data-type="plus" data-field="@item.Id">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </td>
+                        <td class="listQty">
+                            <button type="button" class="btn btn-default btn-number minusList" data-type="minus" data-field="@item.Id">
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </button>
+                            @Html.DisplayFor(modelItem => item.ListQty)
+                            <button type="button" class="btn btn-default btn-number plusList" data-type="plus" data-field="@item.Id">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </td>
+                        <td class="inCart">
+                            @Html.CheckBoxFor(ModelItem => item.InCart, new
+                       { @class = "ActiveCheck" })
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-default" })
+                        </td>
+                    </tr>
+                }
+            }
+        }
+
+
+    }
+
+</table>
+
+<h3>Items In Cart</h3>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PantryQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ListQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InCart)
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+
+    @{
+        foreach (var group in Model.GroupBy(item => item.ItemCategory))
+        {
+            if (group.Any(item => item.InCart == true && item.ListQty > 0))
+            {
+                <tr><th>@group.Key</th></tr>
+            }
+            foreach (var item in group)
+
+            {
+                if (item.InCart == true && item.ListQty > 0)  //Only draw items in the cart and on the list
+                {
+                    <tr id="@item.Id">
+                        <td class="itemName">
+                            @Html.DisplayFor(modelItem => item.ItemName, new { contenteditable = "true" })
+                        </td>
+                        <td class="itemDescription">
+                            @Html.DisplayFor(modelItem => item.ItemDescription)
+                        </td>
+                        <td class="unitQty">
+                            @Html.DisplayFor(modelItem => item.UnitQty)
+                        </td>
+                        <td class="unitType">
+                            @Html.DisplayFor(modelItem => item.UnitType)
+                        </td>
+                        <td class="pantryQty">
+                            <button type="button" class="btn btn-default btn-number minusPantry" data-type="minus" data-field="@item.Id">
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </button>
+                            @Html.DisplayFor(modelItem => item.PantryQty)
+                            <button type="button" class="btn btn-default btn-number plusPantry" data-type="plus" data-field="@item.Id">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </td>
+                        <td class="listQty">
+                            <button type="button" class="btn btn-default btn-number minusList" data-type="minus" data-field="@item.Id">
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </button>
+                            @Html.DisplayFor(modelItem => item.ListQty)
+                            <button type="button" class="btn btn-default btn-number plusList" data-type="plus" data-field="@item.Id">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </td>
+                        <td class="inCart">
+                            @Html.CheckBoxFor(ModelItem => item.InCart, new
+                       { @class = "ActiveCheck" })
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-default" })
+                        </td>
+                    </tr>
+                }
+            }
+        }
+
+
+    }
+
+</table>
+
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmCheckout">
+    <span class="glyphicon glyphicon-shopping-cart"></span>
+    Checkout
+</button>
+<button type="button" class="btn btn-primary" id="addItem">
+    <span class="glyphicon glyphicon-plus-sign"></span>
+    Add Item
+</button>
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" id="confirmCheckout">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Confirm Checkout</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Do you want to checkout and add all items in cart to your pantry?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" id="completeCheckout">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/Custom/AddListenerList.js"></script>
+
