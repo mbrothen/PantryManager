@@ -116,7 +116,28 @@ namespace PantryManager.Controllers
                 item.InCart = false;
                 db.Items.Add(item);
                 db.SaveChanges();
-                return PartialView("_ItemTable", GetUserItems());
+                return PartialView("_ShoppingTable", GetUserItems());
+
+            }
+
+            return View(item);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AjaxCreatePantry([Bind(Include = "Id,ItemName,ItemDescription,UnitType,UnitQty,ItemCategory,PantryQty,ListQty,InCart")] Item item)
+        {
+            if (ModelState.IsValid)
+            {
+                //Add user object to the item
+                string currentUserId = User.Identity.GetUserId();
+                ApplicationUser currentUser = db.Users.FirstOrDefault
+                    (x => x.Id == currentUserId);
+                item.User = currentUser;
+                //Finish adding user to item object
+                item.InCart = false;
+                db.Items.Add(item);
+                db.SaveChanges();
+                return PartialView("_PantryTable", GetUserItems());
 
             }
 
